@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivendor/Register/signin.dart';
 
+import 'about us.dart';
+import 'cart.dart';
 import 'homepage.dart';
 
 
@@ -20,8 +22,8 @@ class _HomeState extends State<Home> {
   final tabs = [
 
     HomePage(),
-    Signin(),
-    Text('home3'),
+    About(),
+    Cart(),
     Text('home4'),
 
 

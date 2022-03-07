@@ -91,7 +91,7 @@ class _SigninState extends State<Signin> {
                         padding: EdgeInsets.symmetric(vertical: 50.h,horizontal: 100.w),
                         // color: Colors.orangeAccent,
                         child: Image.asset(
-                          'images/logo.png',
+                          'images/logo.PNG',
 
                         ),
 
@@ -115,7 +115,7 @@ class _SigninState extends State<Signin> {
                           ),
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 15.w,bottom: 15.h),
+                            contentPadding: EdgeInsets.only(left: 15.w,bottom: 5.h),
 
                             hintText: '+92\t\t\t\t     اپنا نمبر درج کریں',
                             hintStyle: TextStyle(

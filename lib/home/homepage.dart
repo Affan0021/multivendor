@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:multivendor/model/cart_data.dart';
+import 'package:provider/provider.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -16,8 +17,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         title:  Container(
-          height: 34,
-          width: 250,
+          height: 34.h,
+          width: 250.w,
           // margin: EdgeInsets.only(left: 20.w),
           child: TextField(
             textAlign: TextAlign.end,
@@ -30,7 +31,7 @@ class _HomePageState extends State<HomePage> {
             ),
             decoration: InputDecoration(
               border: InputBorder.none,
-              contentPadding: EdgeInsets.only(right: 10.w,bottom: 7.h),
+              contentPadding: EdgeInsets.only(right: 10.w,bottom: 4.h),
 
               hintText: 'تلاش کریں',
               hintStyle: TextStyle(
@@ -88,8 +89,8 @@ class _HomePageState extends State<HomePage> {
                     child: Text('نمایاں اشیا',style: TextStyle(fontSize: 20.sp,fontWeight: FontWeight.bold),),
                   ),
                   Container(
-                      height: 200,
-                      width: 500,
+                      height: 250.h,
+                      width: 500.w,
 
                       child: ListView(
                         scrollDirection: Axis.horizontal,
@@ -98,13 +99,13 @@ class _HomePageState extends State<HomePage> {
                           Row(
                             children: [
 
-                              buildcard('کافی','مقدار: 6 اشیا','Rs 106','images/coffee.png'),
+                              buildcard('کافی','Rs 120.57','Rs 106','images/coffee.png'),
                               SizedBox(width: 15.w,),
-                              buildcard('بسکٹ','مقدار: 4 اشیا','Rs 150','images/biscuits.png'),
+                              buildcard('بسکٹ','Rs 170.17','Rs 150','images/biscuits.png'),
                               SizedBox(width: 15.w,),
-                              buildcard('ڈیٹول','مقدار: 3 اشیا','Rs 200','images/detol.png'),
+                              buildcard('ڈیٹول','Rs 230.6','Rs 200','images/detol.png'),
                               SizedBox(width: 15.w,),
-                              buildcard('مسالہ','مقدار: 4 اشیا','Rs 500','images/masala.png'),
+                              buildcard('مسالہ','Rs 570.7','Rs 500','images/masala.png'),
 
                             ],
                           )
@@ -265,110 +266,165 @@ class _HomePageState extends State<HomePage> {
 
       )
   );
-  Widget buildcard(String title , String price , String quantity , String image) =>  Container(
+  Widget buildcard(String title , String price , String quantity , String image) =>  InkWell(
+    onTap: (){
 
-    width: 180.w,
-    height: 220.h,
+      Provider.of<DataModel>(context, listen: false).addTaskInList(title , price , quantity , image);
 
-    child: Column(
+    },
+    child: Container(
 
-      children: [
+      width: 180.w,
+      height: 220.h,
 
-        Container(
-          width: 120.w,
-          height: 80.h,
-          alignment: Alignment.topLeft,
-          child: Image.asset(image,),
+      child: Column(
 
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Container(
+        children: [
 
-            margin: EdgeInsets.only(right: 20.w),
-            alignment: Alignment.centerRight,
-            child: Text(title,
-              style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'OpenSans',
-                fontSize: 22.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-        ),
+          Row(
+            children: [
 
-        Container(
-            margin: EdgeInsets.only(right: 20.w),
-            alignment: Alignment.centerRight,
-            child: Text(quantity,
-              style: TextStyle(
-                color: Colors.black,
-                fontFamily: 'OpenSans',
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w400,
-              ),)
-        ),
+          Container(
+            width: 120.w,
+            height: 80.h,
+            alignment: Alignment.topLeft,
+            child: Image.asset(image,),
 
-        Container(
-            margin: EdgeInsets.only(right: 20.w),
-            alignment: Alignment.centerRight,
-            child: Text(price,
-              style: TextStyle(
-                color: Colors.black,
+          ),
+          SizedBox(width: 10.w,),
+          Column(
+            children: [
+
+          Container(
+            width: 35.w,
+            height: 35.h,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(4.r),
+              color: Colors.blue,
+            ),
+            child:RotatedBox(
+              quarterTurns: 3,
+              child: Text('1L', style: TextStyle(
+                color: Colors.white,
                 fontFamily: 'OpenSans',
                 fontSize: 15.sp,
-                fontWeight: FontWeight.w400,
-              ),)
-        ),
-        Container(
-            height: 40.h,
-            width: 180.w,
-            child: ElevatedButton(
-              onPressed: ()
-
-              {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Login()),
-                // );
-
-              },
-
-
-              style: ButtonStyle(
-
-                backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                    if (states.contains(MaterialState.pressed))
-                      return Colors.white;
-                    return Colors.green;
-                  },
+                fontWeight: FontWeight.w800,
+              ),),
+            ),
+          ),
+              SizedBox(height: 5.h,),
+              Container(
+                width: 35.w,
+                height: 35.h,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.r),
+                  color: Colors.red,
                 ),
-
+                child:RotatedBox(
+                  quarterTurns: 3,
+                  child: Text('x5', style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'OpenSans',
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w800,
+                  ),),
+                ),
               ),
+            ],
+          )
+            ],
+          ),
+          SizedBox(
+            height: 10.h,
+          ),
+          Container(
 
-
-              child: Text(
-                'خریداری',
+              margin: EdgeInsets.only(right: 20.w),
+              alignment: Alignment.centerRight,
+              child: Text(title,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontFamily: 'OpenSans',
                   fontSize: 22.sp,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
-            )
-        ),
+              )
+          ),
+
+          Container(
+              margin: EdgeInsets.only(right: 20.w),
+              alignment: Alignment.centerRight,
+              child: Text(quantity,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w800,
+                ),)
+          ),
+
+          Container(
+              margin: EdgeInsets.only(right: 20.w),
+              alignment: Alignment.centerRight,
+              child: Text(price,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'OpenSans',
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w700,
+                ),)
+          ),
+          Container(
+              height: 40.h,
+              width: 180.w,
+              child: ElevatedButton(
+                onPressed: ()
+
+                {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Login()),
+                  // );
+
+                },
 
 
-      ],
+                style: ButtonStyle(
+
+                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed))
+                        return Colors.white;
+                      return Colors.green;
+                    },
+                  ),
+
+                ),
+
+
+                child: Text(
+                  'ابھی خریدیں',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'OpenSans',
+                    fontSize: 22.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+          ),
+
+
+        ],
+      ),
+      decoration: BoxDecoration(
+          color: Colors.white70,
+          borderRadius: BorderRadius.circular(5)
+      ),
+
     ),
-    decoration: BoxDecoration(
-        color: Colors.white70,
-        borderRadius: BorderRadius.circular(5)
-    ),
-
   );
 
 }

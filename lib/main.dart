@@ -4,18 +4,34 @@ import 'package:multivendor/splash/onboard.dart';
 import 'package:multivendor/splash/splash.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-void main() {
-  runApp(
-      ScreenUtilInit(
-      designSize: Size(360, 690),
-      builder: () => GetMaterialApp (
-    initialRoute: '/',
-    routes: {
-      '/': (context) => Splash(),
-      'second': (context) => SecondSplash(),
-    },
+import 'package:provider/provider.dart';
 
-  )
-      )
-  );
+import 'model/cart_data.dart';
+
+
+void main() {  runApp(const MyApp());
+}
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    return  MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => DataModel()),
+           ],
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+           home: ScreenUtilInit(
+            designSize: const Size(360, 690),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: () => const Splash(),
+          ),
+        )
+    );
+  }
 }
