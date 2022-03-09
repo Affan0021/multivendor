@@ -11,6 +11,14 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   @override
+  final formKey = GlobalKey<FormState>();
+  String username = '';
+  String email = '';
+  String password = '';
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
+
+
+
 
   Widget build(BuildContext context) {
 
@@ -19,14 +27,16 @@ class _SignupState extends State<Signup> {
         backgroundColor: Colors.blueGrey,
 
 
-        body: SingleChildScrollView(
+        key: _scaffoldkey,
+        body: Form(
+        key: formKey,
+        child: SingleChildScrollView(
+        child: Stack(children: <Widget>[
 
-            child: Stack(
-                children: <Widget>[
 
 
 
-                  Column(
+        Column(
                     children: [
 
 
@@ -426,9 +436,162 @@ class _SignupState extends State<Signup> {
 
         )
 
-
+        )
     );
 
   }
 
+  Widget buildPhone() => Container(
+
+      width: MediaQuery.of(context).size.width/1.2,
+
+      child:TextFormField(
+        // cursorWidth: 20,
+
+        // maxLines:  5,
+
+        decoration: InputDecoration(
+          contentPadding: new EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              // width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // contentPadding: const EdgeInsets.only(top: 11.0),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: Colors.blue,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          labelText: 'Password',
+          hintStyle: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 17,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+
+
+        ),
+
+        validator: (value) {
+          if (value!.length < 7) {
+            return 'Password must be at least 7 characters long';
+          }
+        },
+        onSaved: (value) => setState(() => password = value!),
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true,
+      ));
+  Widget buildName() => Container(
+
+      width: MediaQuery.of(context).size.width/1.2,
+
+      child:TextFormField(
+        // cursorWidth: 20,
+
+        // maxLines:  5,
+
+        decoration: InputDecoration(
+          contentPadding: new EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              // width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // contentPadding: const EdgeInsets.only(top: 11.0),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: Colors.blue,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          labelText: 'Password',
+          hintStyle: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 17,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+
+
+        ),
+
+        validator: (value) {
+          if (value!.length < 7) {
+            return 'Password must be at least 7 characters long';
+          }
+        },
+        onSaved: (value) => setState(() => password = value!),
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true,
+      ));
+  Widget buildshop() => Container(
+
+      width: MediaQuery.of(context).size.width/1.2,
+
+      child:TextFormField(
+        // cursorWidth: 20,
+
+        // maxLines:  5,
+
+        decoration: InputDecoration(
+          contentPadding: new EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              // width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // contentPadding: const EdgeInsets.only(top: 11.0),
+          prefixIcon: Icon(
+            Icons.lock,
+            color: Colors.blue,
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          labelText: 'Password',
+          hintStyle: TextStyle(
+            color: Colors.blueGrey,
+            fontSize: 17,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+
+
+        ),
+
+        validator: (value) {
+          if (value!.length < 7) {
+            return 'Password must be at least 7 characters long';
+          }
+        },
+        onSaved: (value) => setState(() => password = value!),
+        keyboardType: TextInputType.visiblePassword,
+        obscureText: true,
+      ));
 }

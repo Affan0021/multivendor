@@ -14,6 +14,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   @override
 
+
   Widget build(BuildContext context) {
 
 
@@ -94,7 +95,9 @@ class _RegisterState extends State<Register> {
                       Container(
 
                         alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(vertical: 50.h,horizontal: 100.w),
+                        width: 200.w,
+                        height: 150.h,
+                        // padding: EdgeInsets.symmetric(vertical: 50.h,horizontal: 100.w),
                         // color: Colors.orangeAccent,
                         child: Image.asset(
                           'images/logo.PNG',
@@ -105,7 +108,7 @@ class _RegisterState extends State<Register> {
                       ),
 
                       SizedBox(
-                        height: 100.h,
+                        height: 70.h,
                       ),
 
                       Container(

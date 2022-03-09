@@ -30,16 +30,13 @@ class _SecondSplashState extends State<SecondSplash> {
 
     return Scaffold(
       backgroundColor: Colors.blueGrey,
-      body: SingleChildScrollView(
+      body: SafeArea(
 
         child: Stack(
           children: <Widget>[
 
             Column(
               children: [
-                SizedBox(
-                  height: 100.h,
-                ),
 
                 Container(
                   width: double.infinity,

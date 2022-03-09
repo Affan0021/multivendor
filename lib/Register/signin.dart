@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivendor/home/home.dart';
+import 'package:international_phone_input/international_phone_input.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'otp.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
@@ -12,6 +15,17 @@ class Signin extends StatefulWidget {
 
 class _SigninState extends State<Signin> {
   @override
+  TextEditingController _emailTEC = TextEditingController();
+  //var _email;
+  var phone;
+  void onPhoneNumberChange(String number, String internationalizedPhoneNumber, String isoCode) {
+    setState(() {
+      phone =internationalizedPhoneNumber;
+      print(phone);
+
+
+    });
+  }
 
   Widget build(BuildContext context) {
 
@@ -91,7 +105,7 @@ class _SigninState extends State<Signin> {
                         padding: EdgeInsets.symmetric(vertical: 50.h,horizontal: 100.w),
                         // color: Colors.orangeAccent,
                         child: Image.asset(
-                          'images/logo.PNG',
+                          'images/logo.png',
 
                         ),
 
@@ -99,44 +113,71 @@ class _SigninState extends State<Signin> {
                       ),
 
                       SizedBox(
-                        height: 70.h,
+                        height: 40.h,
                       ),
 
+                      // Container(
+                      //     height: 40,
+                      //   width: 250,
+                      //   child: TextField(
+                      //     keyboardType: TextInputType.emailAddress,
+                      //     style: TextStyle(
+                      //       color: Colors.black,
+                      //       fontSize: 20,
+                      //       fontFamily: 'OpenSans',
+                      //
+                      //     ),
+                      //     decoration: InputDecoration(
+                      //       border: InputBorder.none,
+                      //       contentPadding: EdgeInsets.only(left: 15.w,bottom: 5.h),
+                      //
+                      //       hintText: '+92\t\t\t\t     اپنا نمبر درج کریں',
+                      //       hintStyle: TextStyle(
+                      //         color: Colors.white, // <-- Change this
+                      //         fontSize: 15.sp,
+                      //         fontWeight: FontWeight.w400,
+                      //         fontStyle: FontStyle.normal,
+                      //       ),
+                      //     ),
+                      //
+                      //   ),
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(
+                      //       color: Colors.black,
+                      //       width: 0,
+                      //     ),
+                      //     borderRadius: BorderRadius.circular(20),
+                      //     // color: const Color(0xff7cb1b6),
+                      //   ),
+                      // ),
+
                       Container(
-                          height: 40,
-                        width: 250,
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'OpenSans',
 
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 15.w,bottom: 5.h),
+                       height: 40.h,
+                        width: 265.w,
+                        child : InternationalPhoneInput(
 
-                            hintText: '+92\t\t\t\t     اپنا نمبر درج کریں',
+                          decoration: InputDecoration.collapsed(
+                            hintText: 'اپنا فون نمبر درج کریں',
                             hintStyle: TextStyle(
-                              color: Colors.white, // <-- Change this
+
+                              color: Colors.black,
                               fontSize: 15.sp,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
                             ),
+                            // fillColor: Colors.brown,
                           ),
+                          onPhoneNumberChange: onPhoneNumberChange,
+                          initialPhoneNumber: phone,
+                          initialSelection: 'PAK',
+                          enabledCountries: ['+92',],
+                          showCountryCodes: true,
 
                         ),
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          // color: const Color(0xff7cb1b6),
+                          borderRadius: BorderRadius.circular(7.r),
+                          color: Colors.grey,
                         ),
                       ),
-
 
 
 
@@ -151,10 +192,14 @@ class _SigninState extends State<Signin> {
                             onPressed: ()
 
                             {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Home()),
-                              );
+                              if(phone != null)
+                                {
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Search(title: phone,)),
+                                  );
+                                }
 
                             },
 
@@ -181,7 +226,7 @@ class _SigninState extends State<Signin> {
 
 
                             child: Text(
-                              '\tسائن ان',
+                              'جمع کرائیں',
                               style: TextStyle(
                                 color: Colors.blueAccent,
                                 fontFamily: 'OpenSans',
