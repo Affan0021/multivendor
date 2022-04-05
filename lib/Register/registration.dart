@@ -100,7 +100,7 @@ class _RegisterState extends State<Register> {
                         // padding: EdgeInsets.symmetric(vertical: 50.h,horizontal: 100.w),
                         // color: Colors.orangeAccent,
                         child: Image.asset(
-                          'images/logo.PNG',
+                          'images/logo.png',
 
                         ),
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../model/location.dart';
+
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -30,13 +32,12 @@ class _SignupState extends State<Signup> {
         key: _scaffoldkey,
         body: Form(
         key: formKey,
-        child: SingleChildScrollView(
-        child: Stack(children: <Widget>[
+            child: SingleChildScrollView(
+                child: Stack(children: <Widget>[
+                Align(
+                alignment: Alignment.center,
 
-
-
-
-        Column(
+                    child: Column(
                     children: [
 
 
@@ -114,114 +115,17 @@ class _SignupState extends State<Signup> {
                         height: 10.h,
                       ),
 
-                      Container(
-                        height: 40,
-                        width: 250,
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'OpenSans',
+                       // phone
+                       buildPhone(),
 
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 15.w ),
-
-                            hintText: '+92     \tاپنا فون نمبر درج کریں',
-                            hintStyle: TextStyle(
-                              color: Colors.white, // <-- Change this
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            ),
-                          ),
-
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          // color: const Color(0xff7cb1b6),
-                        ),
-                      ),
                       SizedBox(
                         height: 20.h,
                       ),
-                      Container(
-                        height: 40,
-                        width: 250,
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'OpenSans',
-
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 15.w,bottom: 5.h),
-
-                            hintText: 'اپنا پورا نام درج کریں',
-                            hintStyle: TextStyle(
-                              color: Colors.white, // <-- Change this
-                              fontSize: 15.sp,
-                              fontWeight:  FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            ),
-                          ),
-
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          // color: const Color(0xff7cb1b6),
-                        ),
-                      ),
+                      buildName(),
                       SizedBox(
                         height: 20.h,
                       ),
-                      Container(
-                        height: 40,
-                        width: 250,
-                        child: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            fontFamily: 'OpenSans',
-
-                          ),
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 15.w,bottom: 5.h),
-
-                            hintText: 'اپنے اسٹور کا پورا نام درج کریں',
-                            hintStyle: TextStyle(
-                              color: Colors.white, // <-- Change this
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w400,
-                              fontStyle: FontStyle.normal,
-                            ),
-                          ),
-
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 0,
-                          ),
-                          borderRadius: BorderRadius.circular(20),
-                          // color: const Color(0xff7cb1b6),
-                        ),
-                      ),
+                     buildshop(),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -379,10 +283,20 @@ class _SignupState extends State<Signup> {
                             onPressed: ()
 
                             {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(builder: (context) => Login()),
-                              // );
+                              // final isValid = formKey.currentState!.validate();
+                              // FocusScope.of(context).unfocus();
+                              //
+                              //
+                              //
+                              // if (isValid) {
+                              //   formKey.currentState!.save();
+                              //
+                              //   //  buildsignauth();
+                              //
+                              // };
+                              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => Location()));
+
 
                             },
 
@@ -428,6 +342,7 @@ class _SignupState extends State<Signup> {
 
 
                     ],
+                    )
                   )
 
 
@@ -441,18 +356,13 @@ class _SignupState extends State<Signup> {
 
   }
 
-  Widget buildPhone() => Container(
-
-      width: MediaQuery.of(context).size.width/1.2,
-
-      child:TextFormField(
-        // cursorWidth: 20,
-
-        // maxLines:  5,
-
+  Widget buildPhone() =>    Container(
+    // height: 40.h,
+    width: 250.w,
+      child:  TextFormField(
         decoration: InputDecoration(
-          contentPadding: new EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-
+          contentPadding:
+          EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
           border: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.blue,
@@ -461,10 +371,7 @@ class _SignupState extends State<Signup> {
             borderRadius: BorderRadius.circular(20),
           ),
           // contentPadding: const EdgeInsets.only(top: 11.0),
-          prefixIcon: Icon(
-            Icons.lock,
-            color: Colors.blue,
-          ),
+
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Colors.blue,
@@ -472,126 +379,149 @@ class _SignupState extends State<Signup> {
             ),
             borderRadius: BorderRadius.circular(20),
           ),
-          labelText: 'Password',
+          // labelText: 'Phone',
+          hintText: '+92     \tاپنا فون نمبر درج کریں',
           hintStyle: TextStyle(
-            color: Colors.blueGrey,
-            fontSize: 17,
+            color: Colors.white, // <-- Change this
+            fontSize: 15.sp,
             fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+          errorStyle: TextStyle(
+            color: Colors.red, // <-- Change this
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w800,
             fontStyle: FontStyle.normal,
           ),
 
 
         ),
 
-        validator: (value) {
-          if (value!.length < 7) {
-            return 'Password must be at least 7 characters long';
-          }
-        },
-        onSaved: (value) => setState(() => password = value!),
-        keyboardType: TextInputType.visiblePassword,
-        obscureText: true,
-      ));
-  Widget buildName() => Container(
 
-      width: MediaQuery.of(context).size.width/1.2,
-
-      child:TextFormField(
-        // cursorWidth: 20,
-
-        // maxLines:  5,
-
-        decoration: InputDecoration(
-          contentPadding: new EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue,
-              // width: 3,
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          // contentPadding: const EdgeInsets.only(top: 11.0),
-          prefixIcon: Icon(
-            Icons.lock,
-            color: Colors.blue,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue,
-              width: 3,
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          labelText: 'Password',
-          hintStyle: TextStyle(
-            color: Colors.blueGrey,
-            fontSize: 17,
-            fontWeight: FontWeight.w400,
-            fontStyle: FontStyle.normal,
-          ),
-
-
-        ),
-
-        validator: (value) {
-          if (value!.length < 7) {
-            return 'Password must be at least 7 characters long';
-          }
-        },
-        onSaved: (value) => setState(() => password = value!),
-        keyboardType: TextInputType.visiblePassword,
-        obscureText: true,
-      ));
-  Widget buildshop() => Container(
-
-      width: MediaQuery.of(context).size.width/1.2,
-
-      child:TextFormField(
-        // cursorWidth: 20,
-
-        // maxLines:  5,
-
-        decoration: InputDecoration(
-          contentPadding: new EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
-
-          border: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue,
-              // width: 3,
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          // contentPadding: const EdgeInsets.only(top: 11.0),
-          prefixIcon: Icon(
-            Icons.lock,
-            color: Colors.blue,
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.blue,
-              width: 3,
-            ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          labelText: 'Password',
-          hintStyle: TextStyle(
-            color: Colors.blueGrey,
-            fontSize: 17,
-            fontWeight: FontWeight.w400,
-            fontStyle: FontStyle.normal,
-          ),
-
-
-        ),
-
-        validator: (value) {
-          if (value!.length < 7) {
-            return 'Password must be at least 7 characters long';
-          }
-        },
-        onSaved: (value) => setState(() => password = value!),
-        keyboardType: TextInputType.visiblePassword,
-        obscureText: true,
-      ));
+validator: (value) {
+if (value!.length < 1) {
+return 'Please fill this field';
 }
+},
+onSaved: (value) => setState(() => password = value!),
+keyboardType: TextInputType.visiblePassword,
+
+)
+
+  );
+  Widget buildName() =>      Container(
+    // height: 40.h,
+      width: 250.w,
+      child:  TextFormField(
+        decoration: InputDecoration(
+          contentPadding:
+          EdgeInsets.symmetric(vertical: 1.h, horizontal: 10.w),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              // width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // contentPadding: const EdgeInsets.only(top: 11.0),
+
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // labelText: 'Phone',
+          hintText: 'اپنا پورا نام درج کریں',
+          hintStyle: TextStyle(
+            color: Colors.white, // <-- Change this
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+          errorStyle: TextStyle(
+            color: Colors.red, // <-- Change this
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w800,
+            fontStyle: FontStyle.normal,
+          ),
+
+
+        ),
+
+
+        validator: (value) {
+          if (value!.length < 1) {
+            return 'Please fill this field';
+          }
+        },
+        onSaved: (value) => setState(() => password = value!),
+        keyboardType: TextInputType.visiblePassword,
+
+      )
+
+  );
+  Widget buildshop() =>  Container(
+    // height: 40.h,
+      width: 250.w,
+      child:  TextFormField(
+        decoration: InputDecoration(
+          contentPadding:
+          EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              // width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // contentPadding: const EdgeInsets.only(top: 11.0),
+
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.blue,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          // labelText: 'Phone',
+          hintText: '+92     \tاپنا فون نمبر درج کریں',
+          hintStyle: TextStyle(
+            color: Colors.white, // <-- Change this
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.normal,
+          ),
+          errorStyle: TextStyle(
+            color: Colors.red, // <-- Change this
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w800,
+            fontStyle: FontStyle.normal,
+          ),
+
+
+        ),
+
+
+        validator: (value) {
+          if (value!.length < 1) {
+            return 'Please fill this field';
+          }
+        },
+        onSaved: (value) => setState(() => password = value!),
+        keyboardType: TextInputType.visiblePassword,
+
+      )
+
+  );
+}
+
+// validator: (value) {
+// if (value!.length < 7) {
+// return 'Password must be at least 7 characters long';
+// }
+// },
+// onSaved: (value) => setState(() => password = value!),
+// keyboardType: TextInputType.visiblePassword,
+// hintText: 'اپنا پورا نام درج کریں',

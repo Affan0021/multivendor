@@ -22,6 +22,7 @@ class _CartState extends State<Cart> {
           automaticallyImplyLeading: false,
 
         ),
+        backgroundColor: Colors.grey[300],
         body: SingleChildScrollView(
 
           child: Stack(
@@ -30,8 +31,84 @@ class _CartState extends State<Cart> {
           Column(
           children: <Widget>[
 
+            // Row(
+            //   children: [
+            //
+            // Container(
+            //
+            //      child: Text('title',
+            //       style: TextStyle(
+            //         color: Colors.black,
+            //         fontFamily: 'OpenSans',
+            //         fontSize: 22.sp,
+            //         fontWeight: FontWeight.bold,
+            //       ),
+            //     )
+            // ),
+            //     SizedBox(width: 50.w,),
+            //     Container(
+            //
+            //
+            //         child: Text('title',
+            //           style: TextStyle(
+            //             color: Colors.black,
+            //             fontFamily: 'OpenSans',
+            //             fontSize: 22.sp,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         )
+            //     ),
+            //   ],
+            // ),
+            SizedBox(height: 7.h,),
+            Container(
+              width: 350.w,
+              height: 120.h,
+              color: Colors.white,
+              child: Column(
+                children: [
+
+                  Container(
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.only(right: 20.w),
+                    child: Text(
+                      'hello baby what'
+                    ),
+                  ),
+                  SizedBox(height: 10.h,),
+
+                  Container(
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.only(right: 20.w),
+                    child: Text(
+                        'hello baby what'
+                    ),
+                  ),
+                  SizedBox(height: 10.h,),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.only(right: 20.w),
+                    child: Text(
+                        'hello baby what'
+                    ),
+                  ),
+                  SizedBox(height: 10.h,),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    margin: EdgeInsets.only(right: 20.w),
+                    child: Text(
+                        'hello baby what'
+                    ),
+                  ),
+
+
+                ],
+              ),
+
+            ),
+            SizedBox(height: 10.h,),
            Container(
-           height: 600.h,
+           height: 1200.h,
                 width: 400.w,
                 child: Consumer<DataModel>(
                   builder: (context, todo, child) {
@@ -43,7 +120,7 @@ class _CartState extends State<Cart> {
                           return Container(
                               width: 400.w,
                               height: 130.h,
-                              color: Colors.greenAccent,
+                              color: Colors.white,
                               child: Row(children: [
                                 SizedBox(
                                   width: 150.w,
@@ -87,13 +164,18 @@ class _CartState extends State<Cart> {
                                     Row(
                                       children: [
                                         IconButton(
-                                            onPressed: () => setState(() =>
-                                                count != 0 ? count-- : count),
+                                            onPressed: ()
+                                            {
+                                              count != 0 ? count-- : count;
+                                         },
+
                                             icon: Icon(Icons.arrow_downward)),
                                         Text(count.toString()),
                                         IconButton(
-                                            onPressed: () =>
-                                                setState(() => count++),
+                                            onPressed: ()
+                                            {
+                                            count != 0 ? count-- : count;
+                                        },
                                             icon: Icon(Icons.arrow_upward)),
                                       ],
                                     )

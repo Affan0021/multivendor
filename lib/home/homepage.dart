@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:multivendor/model/cart_data.dart';
 import 'package:provider/provider.dart';
+
+import '../Register/signin.dart';
+import '../product details/details.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -227,7 +230,23 @@ class _HomePageState extends State<HomePage> {
   }
   Widget category(String image , String title) => InkWell(
 
-      onTap: (){},
+      onTap: (){
+
+         if (image == 'images/oil.jpg' || image == 'images/cream.jpg'
+         || image == 'images/bred.jpg' || image == 'images/ketch.jpg'
+         || image == 'images/milk.jpg' || image == 'images/nimko.jpg'
+         || image == 'images/noodle.jpg' || image == 'images/sugar.jpg'
+         || image == 'images/perf.jpg' || image == 'images/match.jpg'
+         || image == 'images/dry.jpg' || image == 'images/bottle.jpg'
+
+         )
+           {
+             Navigator.of(context).pushReplacement(MaterialPageRoute(
+                 builder: (context) => Details()));
+
+           }
+
+      },
       child: Column(
 
         children: [
@@ -379,31 +398,7 @@ class _HomePageState extends State<HomePage> {
           Container(
               height: 40.h,
               width: 180.w,
-              child: ElevatedButton(
-                onPressed: ()
-
-                {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => Login()),
-                  // );
-
-                },
-
-
-                style: ButtonStyle(
-
-                  backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed))
-                        return Colors.white;
-                      return Colors.green;
-                    },
-                  ),
-
-                ),
-
-
+              alignment: Alignment.center,
                 child: Text(
                   'ابھی خریدیں',
                   style: TextStyle(
@@ -413,8 +408,10 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+
+            color: Colors.green,
               )
-          ),
+
 
 
         ],
